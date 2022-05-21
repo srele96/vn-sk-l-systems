@@ -15,32 +15,58 @@
     <link rel="stylesheet" href="index.css" type="text/css" />
   </head>
   <body>
-    <main>
-      <h1>L-Systems</h1>
-      <p>
-        Created by: <em>Vyacheslav Novak - vj.novak9@gmail.com</em> and
-        <em>Srecko Kostic - srele96@gmail.com</em>.
-      </p>
-      <h2 id="l_systems_description">The L-Systems Koch Isle.</h2>
-      <p>Click <em>Previous</em> or <em>Next</em> to change generation.</p>
-      <p>L-System Generation <b id="value">1</b> of <b id="max">3</b>.</p>
-      <button class="control" id="previous">Previous generation</button>
-      <button class="control" id="next">Next generation</button>
-      <div class="l_systems-placeholder">
-        <canvas aria-labelledby="l_systems_description" id="l_systems"></canvas>
-      </div>
-      <h2>Our work - GitHub</h2>
-      <p>
-        <a href="https://github.com/Skadi999/" referrerpolicy="no-referrer"
-          >GitHub - Vyacheslav Novak</a
-        >
-      </p>
-      <p>
-        <a href="https://github.com/srele96" referrerpolicy="no-referrer"
-          >GitHub - Srecko Kostic</a
-        >
-      </p>
-    </main>
+    <div class="content-container">
+      <main>
+        <h1>L-Systems</h1>
+        <p>
+          Created by: <em>Vyacheslav Novak - vj.novak9@gmail.com</em> and
+          <em>Srecko Kostic - srele96@gmail.com</em>.
+        </p>
+        <h2 id="l_systems_description">The L-Systems Koch Isle.</h2>
+        <p>Click <em>Previous</em> or <em>Next</em> to change generation.</p>
+        <p>L-System Generation <b id="value">1</b> of <b id="max">3</b>.</p>
+        <button class="control" id="previous">Previous generation</button>
+        <button class="control" id="next">Next generation</button>
+        <div class="l_systems-placeholder">
+          <canvas
+            aria-labelledby="l_systems_description"
+            id="l_systems"
+          ></canvas>
+        </div>
+        <h2>Our work - GitHub</h2>
+        <p>
+          <a href="https://github.com/Skadi999/" referrerpolicy="no-referrer"
+            >GitHub - Vyacheslav Novak</a
+          >
+        </p>
+        <p>
+          <a href="https://github.com/srele96" referrerpolicy="no-referrer"
+            >GitHub - Srecko Kostic</a
+          >
+        </p>
+        <h2>How the L-Systems Canvas implementation came to be</h2>
+        <p>
+          My friend Vyacheslav Novak completed the graphics assignments with the
+          highest grade.
+        </p>
+        <p>
+          He created L-Systems in Java, I was very impressed. I got the idea
+          after a while to do the JavaScript canvas implementation.
+        </p>
+        <p>
+          I didn't know the algorithms and logic behind them, Vyacheslav Novak
+          did all the leadership work. I was merely his JavaScript tools to
+          write, run and debug the code.
+        </p>
+      </main>
+      <footer>
+        <p>Property of:</p>
+        <ul>
+          <li>&copy; <em>Vyacheslav Novak - vj.novak9@gmail.com</em></li>
+          <li>&copy; <em>Srecko Kostic - srele96@gmail.com</em></li>
+        </ul>
+      </footer>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>

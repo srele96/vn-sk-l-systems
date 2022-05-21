@@ -51,7 +51,7 @@ a:focus {
   outline: 0.2rem solid #4170ff;
 }
 
-main {
+.content-container {
   margin: auto;
   max-width: 42rem;
 }
