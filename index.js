@@ -256,13 +256,13 @@ const generation = {
 
     const previous = document.querySelector('#previous');
     previous.addEventListener('click', function () {
-      // can't use 'this' here because event binded it
+      // can't use 'this' here because event bound it
       generation.previous();
     });
 
     const next = document.querySelector('#next');
     next.addEventListener('click', function () {
-      // can't use 'this' here because event binded it
+      // can't use 'this' here because event bound it
       generation.next();
     });
   },
