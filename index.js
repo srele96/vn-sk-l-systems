@@ -48,8 +48,12 @@ function Rule(charToConvert, conversion) {
 
 const lSystemsPlaceholder = document.querySelector('.l_systems-placeholder');
 const canvas = document.querySelector('#l_systems');
-canvas.setAttribute('width', `${lSystemsPlaceholder.clientWidth}`);
-canvas.setAttribute('height', `${lSystemsPlaceholder.clientHeight}`);
+function setCanvasSize() {
+  canvas.setAttribute('width', `${lSystemsPlaceholder.clientWidth}`);
+  canvas.setAttribute('height', `${lSystemsPlaceholder.clientHeight}`);
+}
+// here we initialize canvas size
+setCanvasSize();
 const ctx = canvas.getContext('2d');
 
 const LSystem = {
@@ -207,37 +211,65 @@ const generator = {
   maxGen: 3,
 };
 
-(function () {
-  const generationContainer = document.querySelector('#generation-container');
-
-  function setGeneration() {
-    generationContainer.innerHTML = generation;
+function atEndOfWindowResize(callback) {
+  // debounce callback function until the event is over
+  function debounce(func) {
+    var timer;
+    return function () {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(func, 1000);
+    };
   }
 
-  function setGenerationDrawLSystem() {
-    setGeneration();
-    LSystem.run(generation, generator);
-  }
+  window.addEventListener('resize', debounce(callback));
+}
 
-  let generation = 1;
-  setGenerationDrawLSystem();
-
-  function nextGeneration() {
-    if (generation < 3) {
-      generation += 1;
-      setGenerationDrawLSystem();
+const generation = {
+  container: document.querySelector('#generation-container'),
+  value: 1,
+  max: 3,
+  min: 1,
+  updateContainer: function () {
+    this.container.innerHTML = this.value;
+  },
+  draw: function () {
+    LSystem.run(this.value, generator);
+  },
+  previous: function previous() {
+    if (this.value > this.min) {
+      this.value -= 1;
+      this.updateContainer();
+      this.draw();
     }
-  }
-
-  function previousGeneration() {
-    if (generation > 1) {
-      generation -= 1;
-      setGenerationDrawLSystem();
+  },
+  next: function next() {
+    if (this.value < this.max) {
+      this.value += 1;
+      this.updateContainer();
+      this.draw();
     }
-  }
+  },
+  attachControlsDrawLSystem: function () {
+    this.draw();
 
-  const next = document.querySelector('#next');
-  next.addEventListener('click', nextGeneration);
-  const previous = document.querySelector('#previous');
-  previous.addEventListener('click', previousGeneration);
-})();
+    const previous = document.querySelector('#previous');
+    previous.addEventListener('click', function () {
+      // can't use 'this' here because event binded it
+      generation.previous();
+    });
+
+    const next = document.querySelector('#next');
+    next.addEventListener('click', function () {
+      // can't use 'this' here because event binded it
+      generation.next();
+    });
+  },
+};
+
+generation.attachControlsDrawLSystem();
+
+// update the canvas size and redraw because the size has changed
+atEndOfWindowResize(function () {
+  setCanvasSize();
+  generation.draw();
+});
