@@ -32,10 +32,22 @@
           >GitHub - Srecko Kostic</a
         >
       </p>
-      <p id="l_systems_description">The L-Systems Koch Isle.</p>
-      <div class="l_systems-placeholder">
-        <canvas aria-labelledby="l_systems_description" id="l_systems"></canvas>
-      </div>
+      <section>
+        <h1 id="l_systems_description">The L-Systems Koch Isle.</h1>
+        <p>
+          Instructions: Click <em>Previous generation</em> or
+          <em>Next generation</em> to change l-systems generation.
+        </p>
+        <p>Current generation is: <span id="generation-container">1</span></p>
+        <button class="control" id="previous">Previous generation</button>
+        <button class="control" id="next">Next generation</button>
+        <div class="l_systems-placeholder">
+          <canvas
+            aria-labelledby="l_systems_description"
+            id="l_systems"
+          ></canvas>
+        </div>
+      </section>
     </main>
     <script src="index.js"></script>
   </body>

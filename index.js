@@ -126,6 +126,7 @@ const LSystem = {
     this.length /= this.lengthDivisor;
   },
   drawLSystem() {
+    this.ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
     this.drawDeterministicLSystem();
   },
   drawDeterministicLSystem() {
@@ -165,6 +166,7 @@ const LSystem = {
     const y2 = this.viewportTransformY(this.y2);
 
     this.ctx.strokeStyle = '#d9d9d9';
+    this.ctx.beginPath();
     this.ctx.moveTo(x1, y1);
     this.ctx.lineTo(x2, y2);
     this.ctx.stroke();
@@ -205,4 +207,37 @@ const generator = {
   maxGen: 3,
 };
 
-LSystem.run(3, generator);
+(function () {
+  const generationContainer = document.querySelector('#generation-container');
+
+  function setGeneration() {
+    generationContainer.innerHTML = generation;
+  }
+
+  function setGenerationDrawLSystem() {
+    setGeneration();
+    LSystem.run(generation, generator);
+  }
+
+  let generation = 1;
+  setGenerationDrawLSystem();
+
+  function nextGeneration() {
+    if (generation < 3) {
+      generation += 1;
+      setGenerationDrawLSystem();
+    }
+  }
+
+  function previousGeneration() {
+    if (generation > 1) {
+      generation -= 1;
+      setGenerationDrawLSystem();
+    }
+  }
+
+  const next = document.querySelector('#next');
+  next.addEventListener('click', nextGeneration);
+  const previous = document.querySelector('#previous');
+  previous.addEventListener('click', previousGeneration);
+})();
