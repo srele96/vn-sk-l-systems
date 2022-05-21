@@ -225,12 +225,14 @@ function atEndOfWindowResize(callback) {
 }
 
 const generation = {
-  container: document.querySelector('#generation-container'),
+  valueContainer: document.querySelector('#value'),
+  maxContainer: document.querySelector('#max'),
   value: 1,
   max: 3,
   min: 1,
   updateContainer: function () {
-    this.container.innerHTML = this.value;
+    this.valueContainer.innerHTML = this.value;
+    this.maxContainer.innerHTML = this.max;
   },
   draw: function () {
     LSystem.run(this.value, generator);

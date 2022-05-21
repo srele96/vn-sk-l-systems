@@ -37,7 +37,6 @@ body {
 
 a {
   color: #d9d9d9;
-  background-color: #2e2e2e;
   padding: 0.5rem;
   border-radius: 0.25rem;
   text-underline-offset: 0.25rem;
@@ -60,7 +59,7 @@ main {
 .control {
   cursor: pointer;
   color: #d9d9d9;
-  background-color: #242526;
+  background-color: #2d2d2d;
   border: none;
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
@@ -72,5 +71,5 @@ main {
 }
 
 .control:hover {
-  background-color: #2e2e2e;
+  background-color: #3d3d3d;
 }

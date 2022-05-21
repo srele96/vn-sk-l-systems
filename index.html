@@ -17,11 +17,19 @@
   <body>
     <main>
       <h1>L-Systems</h1>
-      <p><em>L-Systems</em> by:</p>
-      <ul>
-        <li><em>Vyacheslav Novak - vj.novak9@gmail.com</em></li>
-        <li><em>Srecko Kostic - srele96@gmail.com</em></li>
-      </ul>
+      <p>
+        Created by: <em>Vyacheslav Novak - vj.novak9@gmail.com</em> and
+        <em>Srecko Kostic - srele96@gmail.com</em>.
+      </p>
+      <h2 id="l_systems_description">The L-Systems Koch Isle.</h2>
+      <p>Click <em>Previous</em> or <em>Next</em> to change generation.</p>
+      <p>L-System Generation <b id="value">1</b> of <b id="max">3</b>.</p>
+      <button class="control" id="previous">Previous generation</button>
+      <button class="control" id="next">Next generation</button>
+      <div class="l_systems-placeholder">
+        <canvas aria-labelledby="l_systems_description" id="l_systems"></canvas>
+      </div>
+      <h2>Our work - GitHub</h2>
       <p>
         <a href="https://github.com/Skadi999/" referrerpolicy="no-referrer"
           >GitHub - Vyacheslav Novak</a
@@ -32,22 +40,6 @@
           >GitHub - Srecko Kostic</a
         >
       </p>
-      <section>
-        <h1 id="l_systems_description">The L-Systems Koch Isle.</h1>
-        <p>
-          Instructions: Click <em>Previous generation</em> or
-          <em>Next generation</em> to change l-systems generation.
-        </p>
-        <p>Current generation is: <span id="generation-container">1</span></p>
-        <button class="control" id="previous">Previous generation</button>
-        <button class="control" id="next">Next generation</button>
-        <div class="l_systems-placeholder">
-          <canvas
-            aria-labelledby="l_systems_description"
-            id="l_systems"
-          ></canvas>
-        </div>
-      </section>
     </main>
     <script src="index.js"></script>
   </body>
