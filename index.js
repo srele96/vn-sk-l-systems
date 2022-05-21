@@ -46,6 +46,17 @@ function Rule(charToConvert, conversion) {
   this.conversion = conversion;
 }
 
+function State(x1, y1, x2, y2, angle, length) {
+  required({ x1, y1, x2, y2, angle, length });
+
+  this.x1 = x1;
+  this.y1 = y1;
+  this.x2 = x2;
+  this.y2 = y2;
+  this.angle = angle;
+  this.length = length;
+}
+
 const lSystemsPlaceholder = document.querySelector('.l_systems-placeholder');
 const canvas = document.querySelector('#l_systems');
 function setCanvasSize() {
@@ -73,13 +84,23 @@ const LSystem = {
   lengthDivisor: 0,
   rotAngle: 0,
   rules: [],
+  // rotAngleDelta: 0,
+  // lengthDelta: 0,
   rotationManager: null,
   lSystem: '',
   generationCount: 0,
+  // states: [],
+  // isStochastic: false,
   run(generationCount, generator) {
     required({ generationCount, generator });
 
     this.initAndDraw(generationCount, generator);
+
+    // fixScaleAndPosition();
+    //
+    // //need to clear, reset (reinitialize) and redraw the L-system after scaling and repositioning it.
+    // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // initAndDraw(generationCount, generator);
   },
   initAndDraw(generationCount, generator) {
     this.initializeLSystem(generationCount, generator);
@@ -88,6 +109,12 @@ const LSystem = {
     this.drawLSystem();
   },
   initializeLSystem(generationCount, generator) {
+    // if (generator instanceof StochasticGenerator) {
+    //   isStochastic = true;
+    //   rotAngleDelta = ((StochasticGenerator) generator).getRotAngleDelta();
+    //   lengthDelta = ((StochasticGenerator) generator).getLengthMultiplierDelta();
+    // }
+
     this.startingX = 0;
     this.startingY = 0;
     this.xMin = this.startingX;
@@ -101,6 +128,8 @@ const LSystem = {
     this.generationCount = generationCount;
 
     this.rotationManager = new RotationManager(generator.angle);
+
+    // states = new Stack<>();
 
     this.lSystem = generator.axiom;
   },
@@ -131,12 +160,14 @@ const LSystem = {
   },
   drawLSystem() {
     this.ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+    // if (isStochastic) drawStochasticLSystem();
+    // else drawDeterministicLSystem();
     this.drawDeterministicLSystem();
   },
   drawDeterministicLSystem() {
     for (let i = 0; i < this.lSystem.length; i++) {
       const c = this.lSystem.charAt(i);
-      if (c === 'F') {
+      if (c === 'F' || c === 'G' || c === 'X' || c === 'Y') {
         this.stepAndDrawLine();
       } else if (c === 'f') {
         this.step();
@@ -144,6 +175,10 @@ const LSystem = {
         this.rotateLeft(this.rotAngle);
       } else if (c === '-') {
         this.rotateRight(this.rotAngle);
+      } else if (c === '[') {
+        // this.saveState();
+      } else if (c === ']') {
+        // this.restoreState();
       }
     }
   },
