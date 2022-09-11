@@ -5,6 +5,12 @@
 - **Vyacheslav Novak - vj.novak9@gmail.com**
 - **Srecko Kostic - srele96@gmail.com**.
 
+## 🎉 Google Lighthouse score 🎉
+
+After seeing the score, I am happy I spent two hours optimizing build 🥳🥳🥳
+
+![100 lighthouse score for performance, accessibility, best practises and SEO](lighthouse-score.png)
+
 ## Credits
 
 Credits for brains, algorithms and technical knowledge go to **Vyacheslav Novak - vj.novak9@gmail.com**.
